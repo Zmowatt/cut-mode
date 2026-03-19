@@ -1,11 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import HomePage from "./components/HomePage";
+import DashboardPage from "./components/DashboardPage";
+import SuggestionsPage from "./components/SuggestionsPage";
 
 function App() {
-  return <h1>Cut Mode</h1>
+  return (
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/suggestions" element={<SuggestionsPage />} />      
+      </Routes>
+    </>
+  );
 }
 
-export default App
+export default App;
