@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { searchFoods } from "../utils/api.js"
 
-function HomePage() {
+function HomePage( {}) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -35,6 +35,19 @@ function HomePage() {
       (item) => item.nutrientName === nutrientName
     );
     return nutrient ? nutrient.value : "N/A";
+  }
+
+  function handleAddFood(food) {
+    const formattedFood = {
+      id: `${food.fdcId}-${Date.now()}`,
+      name: food.description,
+      calories: getNutrientValue(food, "Energy"),
+      protein: getNutrientValue(food, "Protein"),
+      carbs: getNutrientValue(food, "Carbohydrate, by difference"),
+      fat: getNutrientValue(food, "Total lipid (fat)"),
+    };
+
+    onAddFood(formattedFood);
   }
 
   return (
@@ -91,6 +104,8 @@ function HomePage() {
               <strong>Fat:</strong>{" "}
               {getNutrientValue(food, "Total lipid (fat)")} g
             </p>
+
+            <button onClick={() => handleAddFood(food)} style={{marginTop: "0.5rem" }}>Add to Log</button>
           </div>
         ))}
       </div>
