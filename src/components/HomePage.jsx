@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { searchFoods } from "../utils/api.js"
 
-function HomePage( {}) {
+function HomePage( { onAddFood }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
