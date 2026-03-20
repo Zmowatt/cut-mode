@@ -54,7 +54,7 @@ function SuggestionsPage({ dailyLog }) {
               backgroundColor: "#fff",
             }}
           >
-            <p>{suggestions}</p>
+            <p>{suggestion}</p>
           </div>
         ))}
       </div>
