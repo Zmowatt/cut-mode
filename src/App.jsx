@@ -8,8 +8,10 @@ import SummaryBar from "./components/SummaryBar";
 import SettingsPage from "./components/SettingsPage";
 
 function App() {
+  //Stores all foods the user has added to the daily log.
   const [dailyLog, setDailyLog] = useState([]);
 
+  //Stores the user's calorie and marco targets, which can be updated in Settings.
   const [targets, setTargets] = useState({
     calories: 2200,
     protein: 180,
@@ -17,14 +19,17 @@ function App() {
     fat: 70,
   });
 
+  //Adds a selected food item from the search page into the daily log. 
   function handleAddFood(food) {
     setDailyLog((prev) => [...prev, food]);
   }
 
+  //Removes a food item from the daily log by id.
   function handleRemoveFood(id) {
     setDailyLog((prev) => prev.filter((food) => food.id !== id));
   }
 
+  //Defines the main app layout, shared summary bar, and all client-side routes. 
   return (
     <>
       <Header />

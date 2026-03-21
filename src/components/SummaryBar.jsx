@@ -1,4 +1,8 @@
+//SummaryBar: Shows consumed vs target macros and remaining values. 
+
 function SummaryBar({dailyLog, targets}) {
+    
+    //Calculate totals from all foods in the current daily log
     const totals = dailyLog.reduce(
         (acc, food) => {
             acc.calories += Number(food.calories) || 0;
@@ -10,6 +14,7 @@ function SummaryBar({dailyLog, targets}) {
         { calories: 0, protein: 0, carbs: 0, fat: 0 }
     );
 
+    //Creates a resuable summary card for each metric.
     function metricsBlock(label, total, target) {
         const remaining = target - total;
 

@@ -1,3 +1,5 @@
+//Fetches food data from USDA API based on user query.
+
 const API_KEY = import.meta.env.VITE_USDA_API_KEY;
 const BASE_URL = "https://api.nal.usda.gov/fdc/v1/foods/search";
 
@@ -22,6 +24,8 @@ export async function searchFoods(query) {
     }
 
     const data = await response.json();
+    
+    //Return the food array, or an empty arry if no results are found. 
     return data.foods || []
 }
 

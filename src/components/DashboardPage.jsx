@@ -1,4 +1,8 @@
+//DashboardPage: Displays total macros and list of foods added for the day. 
+
 function DashboardPage({ dailyLog, onRemoveFood, targets }) {
+  
+  //Calculate total  calories and macros from every food currently in the daily log.
   const totals = dailyLog.reduce(
     (acc, food) => {
       acc.calories += Number(food.calories) || 0;

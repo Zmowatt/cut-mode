@@ -1,6 +1,10 @@
+//SettingsPage: Allows users to update their daily macro targets.
+
 import { useState } from "react";
 
 function SettingsPage ({ targets, setTargets }) {
+    
+    //Form state starts with the user's current saved targets.
     const [formData, setFormData] = useState({
         calories: targets.calories,
         protein: targets.protein,
@@ -10,6 +14,7 @@ function SettingsPage ({ targets, setTargets }) {
 
     const [savedMessage, setSavedMessage] = useState("");
 
+    //Updates the matching form field as the user types. 
     function handleChange(event) {
         const { name, value } = event.target;
 
@@ -19,6 +24,7 @@ function SettingsPage ({ targets, setTargets }) {
         }));
     }
 
+    //Saves the user's updated targets
     function handleSubmit(event) {
         event.preventDefault();
 

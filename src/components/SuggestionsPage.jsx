@@ -1,4 +1,8 @@
+//SuggestionsPage: Generates recommendations based on remaining macro targets. 
+
 function SuggestionsPage({ dailyLog, targets }) {
+  
+  //Calculate current macro totals from the daily log
   const totals = dailyLog.reduce(
     (acc, food) => {
       acc.calories += Number(food.calories) || 0;
@@ -10,6 +14,7 @@ function SuggestionsPage({ dailyLog, targets }) {
     { calories: 0, protein: 0, carbs: 0, fat: 0 }
   );
 
+  //Build a list of suggestions based on which targets the user is under or over
   const suggestions = [];
 
   if (totals.protein <targets.protein) {

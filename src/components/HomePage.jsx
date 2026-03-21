@@ -1,12 +1,20 @@
+//HomePage: Handles food search, display results, and allows users to add foods to their daily log.
+
 import { useState } from "react";
 import { searchFoods } from "../utils/api.js"
 
 function HomePage( { onAddFood }) {
+  //Stores the current search input.
   const [query, setQuery] = useState("");
+  
+  //Stores food results returned from the API
   const [results, setResults] = useState([]);
+
+  //Controls loading and error feedback during async fetches.
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  //Fetches food results based on the user's search
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -30,6 +38,8 @@ function HomePage( { onAddFood }) {
     }
   }
 
+
+  //Extracts a specific nutrient value from the USDA API response for a food item.
   function getNutrientValue(food, nutrientName) {
     const nutrient = food.foodNutrients?.find(
       (item) => item.nutrientName === nutrientName
@@ -37,6 +47,7 @@ function HomePage( { onAddFood }) {
     return nutrient ? nutrient.value : "N/A";
   }
 
+  //Formats the food into a simpler obest shape before adding it to the daily log. 
   function handleAddFood(food) {
     const formattedFood = {
       id: `${food.fdcId}-${Date.now()}`,
