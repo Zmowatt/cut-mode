@@ -9,11 +9,17 @@ function Header() {
         <NavLink to="/" style={styles.link}>
           Home
         </NavLink>
+
         <NavLink to="/dashboard" style={styles.link}>
           Dashboard
         </NavLink>
+
         <NavLink to="/suggestions" style={styles.link}>
           Suggestions
+        </NavLink>
+
+        <NavLink to="/settings" style={styles.link}>
+          Settings
         </NavLink>
       </div>
     </nav>
@@ -27,7 +33,7 @@ const styles = {
     alignItems: "center",
     padding: "1rem 2rem",
     backgroundColor: "black",
-    borderBottom: "3px solid lime",
+    borderBottom: "3px solid MediumSlateBlue",
   },
   logo: {
     margin: 0,

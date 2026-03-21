@@ -1,21 +1,14 @@
-function SuggestionsPage({ dailyLog }) {
+function SuggestionsPage({ dailyLog, targets }) {
   const totals = dailyLog.reduce(
     (acc, food) => {
-      acc.calories += food.calories;
-      acc.protein += food.protein;
-      acc.carbs += food.carbs;
-      acc.fat += food.fat;
+      acc.calories += Number(food.calories) || 0;
+      acc.protein += Number(food.protein) || 0;
+      acc.carbs += Number(food.carbs) || 0;
+      acc.fat += Number(food.fat) || 0;
       return acc;
     },
     { calories: 0, protein: 0, carbs: 0, fat: 0 }
   );
-
-  const targets = {
-    calories: 2200,
-    protein: 180,
-    carbs: 200,
-    fat: 70,
-  };
 
   const suggestions = [];
 

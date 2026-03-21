@@ -1,10 +1,10 @@
-function DashboardPage({ dailyLog, onRemoveFood }) {
+function DashboardPage({ dailyLog, onRemoveFood, targets }) {
   const totals = dailyLog.reduce(
     (acc, food) => {
-      acc.calories += food.calories;
-      acc.protein += food.protein;
-      acc.carbs += food.carbs;
-      acc.fat += food.fat;
+      acc.calories += Number(food.calories) || 0;
+      acc.protein += Number(food.protein) || 0;
+      acc.carbs += Number(food.carbs) || 0;
+      acc.fat += Number(food.fat) || 0;
       return acc;
     },
     { calories: 0, protein: 0, carbs: 0, fat: 0 }
@@ -15,10 +15,10 @@ function DashboardPage({ dailyLog, onRemoveFood }) {
       <h2>Dashboard</h2>
 
       <div style={{ marginBottom: "1.5rem" }}>
-        <p><strong>Calories:</strong> {totals.calories.toFixed(1)}</p>
-        <p><strong>Protein:</strong> {totals.protein.toFixed(1)} g</p>
-        <p><strong>Carbs:</strong> {totals.carbs.toFixed(1)} g</p>
-        <p><strong>Fat:</strong> {totals.fat.toFixed(1)} g</p>
+        <p><strong>Calories:</strong> {totals.calories.toFixed(1)} / {targets.calories} </p>
+        <p><strong>Protein:</strong> {totals.protein.toFixed(1)} g / {targets.protein} </p>
+        <p><strong>Carbs:</strong> {totals.carbs.toFixed(1)} g / {targets.carbs} </p>
+        <p><strong>Fat:</strong> {totals.fat.toFixed(1)} g/ {targets.fat} </p>
       </div>
 
       {dailyLog.length === 0 ? (

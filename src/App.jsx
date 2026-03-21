@@ -4,21 +4,32 @@ import Header from "./components/Header";
 import HomePage from "./components/HomePage";
 import DashboardPage from "./components/DashboardPage";
 import SuggestionsPage from "./components/SuggestionsPage";
+import SummaryBar from "./components/SummaryBar";
+import SettingsPage from "./components/SettingsPage";
 
 function App() {
   const [dailyLog, setDailyLog] = useState([]);
+
+  const [targets, setTargets] = useState({
+    calories: 2200,
+    protein: 180,
+    carbs: 200,
+    fat: 70,
+  });
 
   function handleAddFood(food) {
     setDailyLog((prev) => [...prev, food]);
   }
 
   function handleRemoveFood(id) {
-    setDailyLog((prev) => prev.filter((food.id) !== id));
+    setDailyLog((prev) => prev.filter((food) => food.id !== id));
   }
 
   return (
     <>
       <Header />
+      <SummaryBar dailyLog={dailyLog} targets={targets} />
+
       <Routes>
         <Route 
           path="/" 
@@ -29,13 +40,18 @@ function App() {
           element={
             <DashboardPage
               dailyLog={dailyLog}
-              onRemoveFood={handleRemoveFood} 
+              onRemoveFood={handleRemoveFood}
+              targets={targets} 
             />
           } 
         />
         <Route 
           path="/suggestions" 
-          element={<SuggestionsPage dailyLog={dailyLog} />} 
+          element={<SuggestionsPage dailyLog={dailyLog} targets={targets} />} 
+        />
+        <Route
+          path="/settings"
+          element={<SettingsPage targets={targets} setTargets={setTargets} />}
         />
       </Routes>
     </>
